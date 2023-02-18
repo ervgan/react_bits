@@ -5,14 +5,14 @@ import Footer from './Components/Footer';
 import About from './Components/About';
 import Specials from './Components/Specials';
 import Testimonials from './Components/Testimonials';
-import Reserve from './Components/Reserve';
+import Reservations from './Components/Reservations';
 
 function App() {
   return (
     <>
       <div class="container">
       <Nav/>
-      <Reserve/>
+      <Reservations/>
       <Specials />
       <Testimonials />
       <About/>

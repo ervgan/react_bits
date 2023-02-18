@@ -1,20 +1,19 @@
 import React from "react";
 import logo from '../logo.svg';
+import {Link} from 'react-router-dom';
 
 
 const Nav = () => {
     return (
-        <div class="nav">
-        <ul>
-            <img src={logo} alt='Logo' class="logo"/>
-            <li><a href="Home">Home</a></li>
-            <li><a href="About">About</a></li>
-            <li><a href="Menu">Menu</a></li>
-            <li><a href="Reservations">Reservations</a></li>
-            <li><a href="Order Online">Order Online</a></li>
-            <li><a href="Login">Login</a></li>
-        </ul>
-        </div>
+        <menu className='navbar-menu'>
+            <img src={logo} alt="Little Lemon logo" className="nav-image"> </img>
+            <Link className="hover-effect" to="/"><h1>Home</h1></Link>
+            <Link className="hover-effect" to="/about"><h1>About</h1></Link>
+            <Link className="hover-effect" to="/menu"><h1>Menu</h1></Link>
+            <Link className="hover-effect" to="/reservations"><h1>Reservations</h1></Link>
+            <Link className="hover-effect" to="/order"><h1>Order</h1></Link>
+            <Link className="hover-effect" to="/login"><h1>Login</h1></Link>
+        </menu>
     )
 }
 
