@@ -288,3 +288,61 @@ footer > menu {
   object-fit: cover;
 }
 
+/* RESERVATIONS */
+.reserve-table {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: -1.4rem;
+}
+
+.header-reserve {
+  width: 100vw; /* width of container */
+  height: 20rem; /* height of container */
+  object-fit: cover;
+}
+
+.reserve-header-text {
+  background-color: #495E57;
+  padding: 0 3rem 0 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+
+.reservation-form {
+  padding: 2rem 0 0.5rem 0;
+  text-align: center;
+}
+
+.reservation-form > div {
+  margin-bottom: 1.5rem;
+}
+
+#booking-warning {
+  margin-top: -2rem;
+  margin-bottom: 2rem;
+}
+
+
+.booking-form-header {
+  width: 100vw; /* width of container */
+  height: 10rem; /* height of container */
+  background-color: #F4CE14;
+  object-fit: cover;
+}
+
+.booking-form-text {
+  padding: 0rem 3rem 0 3rem;
+  position: absolute;
+  font-size: 1rem;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  text-align: center;
+}
+

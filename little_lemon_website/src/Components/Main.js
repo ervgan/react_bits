@@ -3,6 +3,7 @@ import About from './About';
 import Hero from './Hero';
 import Home from './Home';
 import Login from './Login';
+import Reservation from './Reservation';
 import Order from './Order';
 
 const Main = () => {
@@ -18,6 +19,10 @@ const Main = () => {
 
             <Route path="/hero" element= {
             <Hero />
+            } />
+
+            <Route path="/reservation" element= {
+                <Reservation />
             } />
 
             <Route path="/order" element= {
