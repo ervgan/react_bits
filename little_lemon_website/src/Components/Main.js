@@ -1,12 +1,11 @@
 import {Routes, Route} from 'react-router-dom';
-import Home from './Home';
 import About from './About';
-import Reservations from './Reservations';
-import Order from './Order';
+import Hero from './Hero';
+import Home from './Home';
 import Login from './Login';
-import Confirmation from './Confirmation';
+import Order from './Order';
 
-export default function Routing() {
+const Main = () => {
     return (
         <Routes>
             <Route path="/" element= {
@@ -17,8 +16,8 @@ export default function Routing() {
             <About />
             } />
 
-            <Route path="/reservations" element= {
-            <Reservations />
+            <Route path="/hero" element= {
+            <Hero />
             } />
 
             <Route path="/order" element= {
@@ -29,9 +28,8 @@ export default function Routing() {
             <Login />
             } />
 
-            <Route path="/confirmation" element= {
-                <Confirmation />
-            } />
         </Routes>
     );
 }
+
+export default Main;

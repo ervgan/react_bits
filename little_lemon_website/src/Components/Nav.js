@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 const Nav = () => {
     return (
         <menu className='navbar-menu'>
-            <img src={logo} alt="Little Lemon logo" className="nav-image"> </img>
+            <img src={logo} alt="Little Lemon logo" className="nav-image"/>
             <Link className="hover-effect" to="/"><h1>Home</h1></Link>
             <Link className="hover-effect" to="/about"><h1>About</h1></Link>
             <Link className="hover-effect" to="/menu"><h1>Menu</h1></Link>

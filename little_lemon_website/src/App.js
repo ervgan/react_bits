@@ -1,24 +1,17 @@
 import './App.css';
 import React from "react";
-import Nav from './Components/Nav';
-import Footer from './Components/Footer';
-import About from './Components/About';
-import Specials from './Components/Specials';
-import Testimonials from './Components/Testimonials';
-import Reservations from './Components/Reservations';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import Main from './components/Main';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <>
-      <div class="container">
+    <BrowserRouter>
       <Nav/>
-      <Reservations/>
-      <Specials />
-      <Testimonials />
-      <About/>
+      <Main/>
       <Footer/>
-      </div>
-    </>
+    </BrowserRouter>
   );
 }
 
