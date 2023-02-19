@@ -236,7 +236,7 @@ const BookingForm = (props) => {
             <div>
                 <br></br>
                 <small><p id="booking-warning">Note: You cannot edit your reservation after submission. Please call us if you realized you made a mistake.</p></small>
-                <button className="action-button">Book Table</button>
+                <button className="action-button" aria-label="On Click">Book Table</button>
             </div>
        </form>
     );
