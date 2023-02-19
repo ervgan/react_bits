@@ -13,23 +13,30 @@ const Reservation = () => {
         };
     }
 
-    function updateTimes(date) {
+    const fetchAPI = (date) => {
         let result = [];
         let dt = new Date(date)
         let seed = dt.getDate();
         let random = seededRandom(seed);
-        for(let i = 12; i <= 23; i++) {
+
+        for(let i = 17; i <= 23; i++) {
             if(random() < 0.5) {
                 result.push(i + ':00');
             }
-            if (random() < 0.5) {
+            if(random() < 0.5) {
                 result.push(i + ':30');
             }
         }
         return result;
+    };
+
+    const updateTimes = (date) => {
+        return (
+            fetchAPI(date)
+        );
     }
 
-    const output = updateTimes(new Date());
+    const output = fetchAPI(new Date());
 
     const [availableTimes, dispatch] = useReducer(updateTimes, output);
 
