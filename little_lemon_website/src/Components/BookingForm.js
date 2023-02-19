@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BookingForm = (props) => {
+    const navigate = useNavigate();
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
     const [email, setEmail] = useState("");
@@ -10,20 +12,22 @@ const BookingForm = (props) => {
     const [occasion, setOccasion] = useState("");
     const [preferences, setPreferences] = useState("");
     const [comments, setComments] = useState("");
-    const [isValid, setIsValid] = useState(false);
+    const [finalTime, setFinalTime] = useState(
+        props.availableTimes.map((times) => <option>{times}</option>)
+    );
+    const [formData, setFormData] = useState({});
+    /*const [isValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({
         fName: "",
         email: "",
         tel: "",
         date: "",
       });
-    const [popup, setPopup] = useState(<div></div>);
+    const [popup, setPopup] = useState(<div></div>);*/
 
-    const [finalTime, setFinalTime] = useState(
-        props.availableTimes.map((times) => <option>{times}</option>)
-    );
 
-    const successPopup = (
+
+    /*const successPopup = (
         <div className="popup">
         <h2>Booking confirmed.</h2>
         <p>We can't wait to welcome you in our restaurant :)</p>
@@ -63,7 +67,7 @@ const BookingForm = (props) => {
 
         setErrors(newErrors);
         setIsValid(formIsValid);
-      };
+      };*/
 
     const handleDateChange = (e) => {
         setDate(e.target.value);
@@ -74,31 +78,69 @@ const BookingForm = (props) => {
         props.updateTimes(date);
 
         setFinalTime(props.availableTimes.map((times) => <option>{times}</option>));
-        checkFormValidity();
+        setFormData({ ...formData, [e.target.name]: date });
+        /*checkFormValidity();*/
     }
 
     const handleFirstNameChange = (e) => {
-        setFName(e.target.value)
-        checkFormValidity();
+        setFName(e.target.value);
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        /*checkFormValidity();*/
     }
 
     const handleEmailChange = (e) => {
-        setEmail(e.target.value)
-        checkFormValidity();
+        setEmail(e.target.value);
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+
+        /*checkFormValidity();*/
     }
 
     const handleTelChange = (e) => {
-        setTel(e.target.value)
-        checkFormValidity();
+        setTel(e.target.value);
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        /*checkFormValidity();*/
+    }
+
+    const handleLastNameChange = (e) => {
+        setLName(e.target.value);
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        /*checkFormValidity();*/
+    }
+
+    const handlePeopleChange = (e) => {
+        setPeople(e.target.value)
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        /*checkFormValidity();*/
+    }
+
+    const handleOccasionChange = (e) => {
+        setOccasion(e.target.value)
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        /*checkFormValidity();*/
+    }
+
+    const handlePreferencesChange = (e) => {
+        setPreferences(e.target.value)
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        /*checkFormValidity();*/
+    }
+
+    const handleCommentsChange = (e) => {
+        setComments(e.target.value)
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        /*checkFormValidity();*/
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        checkFormValidity();
+        /*checkFormValidity();
         if (isValid){
             setPopup(successPopup)
         } else {
             setPopup(failPopup)
+        }*/
+        if (props.submitForm(formData)){
+            navigate("/confirmedBooking");
         }
       };
 
@@ -117,7 +159,7 @@ const BookingForm = (props) => {
                 <input type="text" id="lName" placeholder="Last Name"
                 minLength={2} maxLength={50}
                 value={lName}
-                onChange={e => setLName(e.target.value)}></input>
+                onChange={handleLastNameChange}></input>
             </div>
 
             <div>
@@ -141,7 +183,7 @@ const BookingForm = (props) => {
                 <input type="number" id="people" placeholder="Number of People"
                 value={people}
                 required min={1} max={100}
-                onChange={e => setPeople(e.target.value)}></input>
+                onChange={handlePeopleChange}></input>
             </div>
 
             <div>
@@ -162,7 +204,7 @@ const BookingForm = (props) => {
                 <label htmlFor="occasion">Occasion</label> <br></br>
                 <select id="occasion"
                 value={occasion}
-                onChange={e => setOccasion(e.target.value)}>
+                onChange={handleOccasionChange}>
                     <option>None</option>
                     <option>Birthday</option>
                     <option>Anniversary</option>
@@ -175,7 +217,7 @@ const BookingForm = (props) => {
                 <label htmlFor="preferences">Seating preferences</label> <br></br>
                 <select id="preferences"
                 value={preferences}
-                onChange={e => setPreferences(e.target.value)}>
+                onChange={handlePreferencesChange}>
                     <option>None</option>
                     <option>Indoors</option>
                     <option>Outdoor (Patio)</option>
@@ -187,7 +229,7 @@ const BookingForm = (props) => {
                 <label htmlFor="comments">Additional Comments</label> <br></br>
                 <textarea id="comments" rows={8} cols={50} placeholder="Additional Comments"
                 value={comments}
-                onChange={e => setComments(e.target.value)}>
+                onChange={handleCommentsChange}>
                 </textarea>
             </div>
 
@@ -195,7 +237,6 @@ const BookingForm = (props) => {
                 <br></br>
                 <small><p id="booking-warning">Note: You cannot edit your reservation after submission. Please call us if you realized you made a mistake.</p></small>
                 <button className="action-button">Book Table</button>
-                {popup}
             </div>
        </form>
     );

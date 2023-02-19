@@ -346,3 +346,49 @@ footer > menu {
   text-align: center;
 }
 
+/* Confirmed Booking */
+.confirmation-header {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: -3rem;
+  min-height: 70vh;
+}
+
+.reserve-header-text {
+  background-color: #495E57;
+  padding: 0 3rem 0 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  border-radius: 0.5rem;
+}
+
+.redirect-buttons {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 12vw;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.redirect-button {
+  background-color: #464646;
+  color: white !important;
+  padding: 2vh 2rem 2vh 2rem;
+  border-radius: 0.5rem;
+  min-width: 12vw;
+  font-family: 'Karla';
+  font-size: 18px;
+}
+
+.redirect-button:hover {
+  background-color: #F4CE14;
+  color:#464646 !important;
+  transition: 0.2s;
+}
+

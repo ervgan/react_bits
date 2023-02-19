@@ -2,7 +2,9 @@ import Reservation from './Hero';
 import Specials from  './Specials';
 import Testimonials from './Testimonials';
 import About from './About';
-export default function Homepage() {
+
+const Home = () => {
+
     return (
         <>
         <Reservation />
@@ -14,3 +16,5 @@ export default function Homepage() {
       </>
     );
 }
+
+export default Home;

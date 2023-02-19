@@ -1,39 +1,19 @@
 import BookingForm from './BookingForm';
 import {useReducer} from 'react';
+import {fetchAPI, submitAPI} from '../API';
 
 const Reservation = () => {
-
-    /* replacement for Math.random() */
-    const seededRandom = (seed) => {
-        let m = 2**35 - 31;
-        let a = 185852;
-        let s = seed % m;
-        return function () {
-            return (s = s * a % m) / m;
-        };
-    }
-
-    const fetchAPI = (date) => {
-        let result = [];
-        let dt = new Date(date)
-        let seed = dt.getDate();
-        let random = seededRandom(seed);
-
-        for(let i = 17; i <= 23; i++) {
-            if(random() < 0.5) {
-                result.push(i + ':00');
-            }
-            if(random() < 0.5) {
-                result.push(i + ':30');
-            }
-        }
-        return result;
-    };
 
     const updateTimes = (date) => {
         return (
             fetchAPI(date)
         );
+    }
+
+    const submitForm = (formData) => {
+        return (
+            submitAPI(formData)
+        )
     }
 
     const output = fetchAPI(new Date());
@@ -48,7 +28,7 @@ const Reservation = () => {
                     <h3>Please enter your details below</h3>
                 </div>
             </div>
-            <BookingForm availableTimes={availableTimes} updateTimes={dispatch}/>
+            <BookingForm availableTimes={availableTimes} updateTimes={dispatch} submitForm={submitForm}/>
         </>
     );
 }

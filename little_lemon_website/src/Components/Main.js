@@ -6,6 +6,7 @@ import Login from './Login';
 import Reservation from './Reservation';
 import Order from './Order';
 import Menu from './Menu';
+import ConfirmedBooking from './ConfirmedBooking';
 
 const Main = () => {
     return (
@@ -36,6 +37,10 @@ const Main = () => {
 
             <Route path="/menu" element= {
             <Menu />
+            } />
+
+            <Route path="/confirmedBooking" element= {
+            <ConfirmedBooking />
             } />
 
         </Routes>
