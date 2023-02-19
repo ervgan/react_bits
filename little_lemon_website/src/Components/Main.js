@@ -5,6 +5,8 @@ import Home from './Home';
 import Login from './Login';
 import Reservation from './Reservation';
 import Order from './Order';
+import Menu from './Menu';
+import Popup from './popup/Popup.js';
 
 const Main = () => {
     return (
@@ -31,6 +33,14 @@ const Main = () => {
 
             <Route path="/login" element= {
             <Login />
+            } />
+
+            <Route path="/menu" element= {
+            <Menu />
+            } />
+
+            <Route path="/popup" element= {
+            <Popup />
             } />
 
         </Routes>

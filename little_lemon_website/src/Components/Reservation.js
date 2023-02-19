@@ -12,7 +12,8 @@ const Reservation = () => {
             return (s = s * a % m) / m;
         };
     }
-    const fetchAPI = (date) => {
+
+    function updateTimes(date) {
         let result = [];
         let dt = new Date(date)
         let seed = dt.getDate();
@@ -21,20 +22,14 @@ const Reservation = () => {
             if(random() < 0.5) {
                 result.push(i + ':00');
             }
-            else {
+            if (random() < 0.5) {
                 result.push(i + ':30');
             }
         }
         return result;
     }
 
-    function updateTimes(date) {
-        return (
-            fetchAPI(date)
-        );
-    }
-
-    const output = fetchAPI(new Date());
+    const output = updateTimes(new Date());
 
     const [availableTimes, dispatch] = useReducer(updateTimes, output);
 

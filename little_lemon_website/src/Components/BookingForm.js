@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
 
 const BookingForm = (props) => {
     const [fName, setFName] = useState("");
@@ -11,10 +10,60 @@ const BookingForm = (props) => {
     const [occasion, setOccasion] = useState("");
     const [preferences, setPreferences] = useState("");
     const [comments, setComments] = useState("");
+    const [isValid, setIsValid] = useState(false);
+    const [errors, setErrors] = useState({
+        fName: "",
+        email: "",
+        tel: "",
+        date: "",
+      });
+    const [popup, setPopup] = useState(<div></div>);
 
     const [finalTime, setFinalTime] = useState(
         props.availableTimes.map((times) => <option>{times}</option>)
     );
+
+    const successPopup = (
+        <div className="popup">
+        <h2>Booking confirmed.</h2>
+        <p>We can't wait to welcome you in our restaurant :)</p>
+        </div>
+    )
+
+    const failPopup = (
+        <div className="popup">
+        <h2>Booking Failed.</h2>
+        <p>Please check your input details.</p>
+        <p>{JSON.stringify(errors)}</p>
+        </div>
+    )
+
+    const isValidEmail = () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    const checkFormValidity = () => {
+        const newErrors = {};
+        let formIsValid = true;
+
+        if (fName === "") {
+          newErrors.fName = "Please enter your first name";
+          formIsValid = false;
+        }
+        if (!isValidEmail(email)) {
+          newErrors.email = "Please enter a valid email address";
+          formIsValid = false;
+        }
+
+        if (tel === "") {
+          newErrors.tel = "Please enter your phone number";
+          formIsValid = false;
+        }
+
+        setErrors(newErrors);
+        setIsValid(formIsValid);
+      };
 
     const handleDateChange = (e) => {
         setDate(e.target.value);
@@ -25,17 +74,42 @@ const BookingForm = (props) => {
         props.updateTimes(date);
 
         setFinalTime(props.availableTimes.map((times) => <option>{times}</option>));
+        checkFormValidity();
     }
 
+    const handleFirstNameChange = (e) => {
+        setFName(e.target.value)
+        checkFormValidity();
+    }
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value)
+        checkFormValidity();
+    }
+
+    const handleTelChange = (e) => {
+        setTel(e.target.value)
+        checkFormValidity();
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        checkFormValidity();
+        if (isValid){
+            setPopup(successPopup)
+        } else {
+            setPopup(failPopup)
+        }
+      };
 
     return (
-       <form className="reservation-form">
+       <form className="reservation-form" onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="fName">First Name</label> <br></br>
                 <input type="text" id="fName" placeholder="First Name"
                 required minLength={2} maxLength={50}
                 value={fName}
-                onChange={e => setFName(e.target.value)}></input>
+                onChange={handleFirstNameChange}></input>
             </div>
 
             <div>
@@ -51,15 +125,15 @@ const BookingForm = (props) => {
                 <input type="email" id="email" placeholder="Email"
                 value={email}
                 required minLength={4} maxLength={200}
-                onChange={e => setEmail(e.target.value)}></input>
+                onChange={handleEmailChange}></input>
             </div>
 
             <div>
                 <label htmlFor="phonenum">Phone Number</label> <br></br>
-                <input type="tel" id="phonenum" placeholder="(xxx)-xxx-xxxx"
+                <input type="tel" id="phonenum" placeholder="(xx)-xxxxxxxx"
                 value={tel}
                 required minLength={10} maxLength={25}
-                onChange={e => setTel(e.target.value)}></input>
+                onChange={handleTelChange}></input>
             </div>
 
             <div>
@@ -120,7 +194,8 @@ const BookingForm = (props) => {
             <div>
                 <br></br>
                 <small><p id="booking-warning">Note: You cannot edit your reservation after submission. Please call us if you realized you made a mistake.</p></small>
-                    <Link className="action-button" to="/confirmation">Book Table</Link>
+                <button className="action-button">Book Table</button>
+                {popup}
             </div>
        </form>
     );
